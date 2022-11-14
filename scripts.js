@@ -24,10 +24,9 @@ function drawGrid(gridSize) {
   for (let i = 0; i < gridSize ** 2; i++) {
     let cell = document.createElement('div');
     cell.className = 'cell';
-    cell.setAttribute(
-      'style',
-      'color: blue; background: lightgrey; width: 40px; height: 40px;'
-    );
+    cell.style.backgroundColor = 'lightgrey';
+    cell.style.width = 640 / gridSize + 'px';
+    cell.style.height = 640 / gridSize + 'px';
     container.appendChild(cell);
   }
 
