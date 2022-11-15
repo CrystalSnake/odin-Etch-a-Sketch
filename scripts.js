@@ -27,23 +27,27 @@ function drawGrid(gridSize) {
     cell.style.backgroundColor = 'lightgrey';
     cell.style.width = 640 / gridSize + 'px';
     cell.style.height = 640 / gridSize + 'px';
+    let overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    overlay.style.height = cell.style.height;
+    overlay.style.transition = 'opacity .2s ease';
+    overlay.style.backgroundColor = 'green';
+    overlay.style.opacity = 0;
+    cell.appendChild(overlay);
     container.appendChild(cell);
   }
 
   document.body.appendChild(container);
 
-  container.addEventListener(
-    'mouseover',
-    (event) => {
-      // highlight the mouseenter target
-      event.target.style.background = 'purple';
+  container.onmouseover = handler;
 
-      setTimeout(() => {
-        event.target.style.background = 'lightgrey';
-      }, 500);
-    },
-    false
-  );
+  function handler(event) {
+    event.target.style.opacity += 0.2;
+
+    setTimeout(() => {
+      event.target.style.opacity = 0;
+    }, 1000);
+  }
 }
 
 drawGrid(gridSize);
